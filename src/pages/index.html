@@ -3,23 +3,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CLI - Jarzt</title>
-    <!-- <link
-      href="https://fonts.googleapis.com/css?family=Ubuntu"
-      rel="stylesheet"
-    /> -->
     <link rel="stylesheet" href="../styles/index.css" />
-    <link rel="stylesheet" href="../scripts/index.js">
   </head>
   <body>
     <div class="terminal">
+      <div id="content">This is the content of the div tag.</div>
 
-        <textarea id="cli-input" onclick="command"></textarea>
-        
-        
-        <label for="username">Jarzt@linux-desktop:~$</label>
-        <input type="text" />
+      <textarea id="input" autofocus></textarea>
+
+      <div id="liner">
+        <span id="typer"></span
+        ><b class="cursor" id="cursor" style="left: 0px">█</b>
+      </div>
     </div>
 
-
+    <script src="../scripts/commands/index.js"></script>
   </body>
 </html>
