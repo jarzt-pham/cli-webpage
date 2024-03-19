@@ -1,20 +1,24 @@
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CLI - Jarzt</title>
-    <link rel="stylesheet" href="../styles/index.css" />
-  </head>
-  <body>
-    <div class="terminal">
-      <pre>
-        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠐⢦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+const help = [
+  "whois          Who is Jarzt?",
+  "projects       What projects has Jarzt worked on?",
+  "contact        How can I contact Jarzt?",
+  "clear          Clear the terminal",
+  "exit           Exit the terminal",
+  "help           Display this help message",
+  "introduction   Display the introduction message",
+];
+
+const cliName = `Jarzt@cli:~$`;
+
+const introduction = [
+  `
+  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠐⢦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀
   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠤⠀⠀⠀⠀⠊⠁⢀⡴⠋⠁⡀⠀⢀⡴⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢦⣀⡀⠉⠑⠒⠠⠤⣀⠀⠀⠀
   ⠀⠀⢀⠤⠒⠀⠀⠉⠒⢤⠁⢠⣴⣶⣶⣶⣞⣻⠋⠀⠀⡔⠀⢠⠛⠀⠀⢠⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣦⠻⢷⣶⣤⣤⣀⠈⣆⠀
   ⠀⣠⠃⢀⠔⠋⠉⠙⢦⠀⠀⠸⣿⣿⡿⢣⡞⠃⠀⢀⡜⠀⠀⠃⠀⠀⢀⠏⠀⢠⣰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣷⡘⢻⣿⣿⡿⠀⣸⠀
   ⢀⠃⢠⠃⠀⠀⠀⠀⠈⣇⠀⠀⢿⡟⢣⡏⠀⠀⠀⡜⠀⡀⠀⠀⠀⢀⣾⠀⠀⢧⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢱⡀⠀⠀⠀⠀⠘⣷⡈⢻⣿⠃⢀⠃⠀
   ⠈⠀⢸⠄⠀⠀⠀⠀⠀⢹⠀⠀⢸⣇⣿⠁⠀⠀⠰⠁⠸⠁⠀⠀⢀⡾⡇⠀⠀⡟⠀⠀⠀⢰⠀⠀⠀⢀⠀⠀⠀⢣⠀⠀⠀⡄⠀⠘⣷⢹⠏⠀⠎⠀⠀
-  ⠀⠀⢻⠀ HI!!⠄⢸⡀⠀⠈⡿⠘⠀⠀⢀⡇⠀⡇⠀⠀⠀⣾⠁⢹⠀⠀⢧⠀⠀⢠⡟⡆⠀⠀⢸⠀⠀⠀⠘⡆⠀⠀⡇⠀⠀⢻⡾⠀⡸⠀⠀⠀
+  ⠀⠀⢻⠀⠸⠿⠿⠿⠄⢸⡀⠀⠈⡿⠘⠀⠀⢀⡇⠀⡇⠀⠀⠀⣾⠁⢹⠀⠀⢧⠀⠀⢠⡟⡆⠀⠀⢸⠀⠀⠀⠘⡆⠀⠀⡇⠀⠀⢻⡾⠀⡸⠀⠀⠀
   ⠸⠀⠸⠀⠀⠀⠀⠀⠀⢸⠃⠀⢰⡇⠀⠀⠀⢸⢠⢰⣷⡄⠀⠀⠙⠒⠀⠳⡀⠈⢦⡀⡞⡗⠚⣆⠀⢸⡄⢰⡄⠀⢣⠀⠀⡇⠀⠀⢀⡇⠀⡇⠀⠀⠀
   ⠀⢇⠀⢧⠀⠀⠀⠀⢀⠞⠆⢠⡏⡇⢸⠀⠀⣾⠟⠛⠇⠈⠑⠒⠇⠀⠀⠀⠙⠷⣆⠹⣿⠅⠀⠈⠑⠠⢿⣪⡿⢦⣸⡄⢀⡇⠀⠀⢸⢹⠀⢸⠀⠀⠀
   ⠀⠈⢆⠈⠓⠤⠤⠔⠋⠀⠀⣾⠃⢰⡸⡄⢀⡏⠀⠀⣀⣀⣀⡀⠀⣀⡀⠀⠀⠀⠀⠀⠀⢀⡀⠀⣀⡀⠀⠀⠀⠈⠫⡇⢸⡇⠀⠀⢸⠀⡆⠀⡄⠀⠀
@@ -30,17 +34,9 @@
   ⠀⠀⠀⠀⠀⠀⠀⠈⠒⠢⣄⠈⠣⢄⣈⣢⣄⡀⠀⠀⣿⣿⡿⣁⣀⣈⣄⣀⡀⠀⠀⣀⣀⣠⣞⣁⣀⣜⣀⣀⣀⣀⣀⣄⣀⣀⣀⣠⡾⠋⢸⡼⠁⢰⠀
   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⠄⣀⣀⡀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠤⠀⠀⠤⠃⠀
 
-      </pre>
-      <div id="content"></div>
+  `,
+  "Welcome to Jarzt's CLI",
+  "Type 'help' to get a list of available commands",
+];
 
-      <textarea id="input" autofocus></textarea>
-
-      <div id="liner">
-        <span id="typer"></span
-        ><b class="cursor" id="cursor" style="left: 0px">█</b>
-      </div>
-    </div>
-
-    <script type="module" src="../scripts/interact.js"></script>
-  </body>
-</html>
+export { help, cliName, introduction };
