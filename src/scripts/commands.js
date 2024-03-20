@@ -8,7 +8,7 @@ const help = [
   "introduction   Display the introduction message",
 ];
 
-const cliName = `Jarzt@cli:~$`;
+const cliName = `Jarzt@cli:~$ `;
 
 const introduction = [
   `
